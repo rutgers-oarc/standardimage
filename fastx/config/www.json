@@ -1,0 +1,5 @@
+{
+    "httpsport": 3443,
+    "cert_file": "hpc.pem",
+    "key_file": "hpc.key"
+}

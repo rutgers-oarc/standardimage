@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Public</short>
+  <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+  <service name="ssh"/>
+  <port protocol="tcp" port="5666"/>
+  <port protocol="tcp" port="1191"/>
+  <port protocol="tcp" port="5031"/>
+  <port protocol="tcp" port="3000"/>
+  <port protocol="tcp" port="3443"/>
+  <port protocol="udp" port="5031"/>
+  <rule family="ipv4">
+    <source address="172.16.94.34"/>
+    <accept/>
+  </rule>
+  <rule family="ipv4">
+    <source address="172.16.94.77"/>
+    <accept/>
+  </rule>
+  <rule family="ipv4">
+    <source address="172.26.34.132"/>
+    <accept/>
+  </rule>
+  <rule family="ipv4">
+    <source address="172.20.0.178"/>
+    <accept/>
+  </rule>
+  <rule family="ipv4">
+    <source address="192.168.0.0/19"/>
+    <accept/>
+  </rule>
+</zone>

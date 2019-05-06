@@ -1,0 +1,20 @@
+{
+    "name": "Default Profile",
+    "description": "Default Profile",
+    "session": {
+        "clipmgr": true,
+        "sharing": true,
+        "offlineSharing": false,
+        "iglx": false,
+        "listenTCP": true,
+        "videoRam": 128000,
+        "cpuPercentage": 50,
+        "disconnectTimeout": 0,
+        "denyMethods": []
+    },
+    "schedule": {
+        "script": "",
+        "userData": {}
+    },
+    "isDefault": true
+}

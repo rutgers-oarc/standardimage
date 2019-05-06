@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <short>Trusted</short>
+  <description>All network connections are accepted.</description>
+  <interface name="ib0"/>
+  <interface name="eth1"/>
+  <interface name="enp0s20u13u5"/>
+  <interface name="enp0s20u1u5"/>
+</zone>

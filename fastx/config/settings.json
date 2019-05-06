@@ -1,0 +1,5 @@
+{
+    "keepAliveInterval": 10,
+    "sshport": 22,
+    "hostname": ""
+}
