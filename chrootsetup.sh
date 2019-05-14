@@ -88,11 +88,11 @@ mkdir /usr/lib/fastx2/var/tmp
 mkdir /usr/lib/fastx2/var/uploads
 cp $WORKDIR/fastx/certs/* /usr/lib/fastx2/var/certs
 cp $WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
-cp $WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
+cp $WORKDIR/fastx/license/* /usr/lib/fastx2/var/license
 chown -R 983:982 /usr/lib/fastx2
 yum -y -q install https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
 yum -y -q install puppet-agent
-cp /$WORKDIR/snmpd.conf /etc/snmp
+cp $WORKDIR/snmpd.conf /etc/snmp
 sed -i s/daemon\ =\ 1/daemon\ =\ 0/ /etc/tuned/tuned-main.conf
 systemctl enable snmpd
 systemctl enable lldpd
