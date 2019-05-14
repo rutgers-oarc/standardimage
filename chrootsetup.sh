@@ -1,23 +1,11 @@
-# master
-export STARTDIR=`pwd`
-export CHROOTHOME=/var/chroots/centos-7.5-vault/
-echo STARTDIR is $STARTDIR
-echo CHROOTHOME is $CHROOTHOME
-WORKDIR="$(basename -- $STARTDIR)"
-echo WORKDIR is $WORKDIR
-echo starting on master
-rm -rf $CHROOTHOME
-rm -f /etc/warewulf/vnfs/centos-7.5-vault.conf
-wwmkchroot centos-7.5 $CHROOTHOME
-wwvnfs --chroot=$CHROOTHOME
-sed -i 's/^hybridpath.*/#\ &\nhybridize\ =\nhybrid\ =/' /etc/warewulf/vnfs/centos-7.5-vault.conf
-rm -f $CHROOTHOME/etc/yum.repos.d/*
-cp CentOS-Base.repo $CHROOTHOME/etc/yum.repos.d
-mv $CHROOTHOME/etc/fstab $CHROOTHOME/etc/fstab-orig
-cp fstab $CHROOTHOME/etc
-yum --installroot=$CHROOTHOME -y -q clean all
-rm -rf $CHROOTHOME/var/cache/yum
-yum --installroot=$CHROOTHOME -y -q --releasever=7.5.1804 makecache
+# in chroot
+rm -f /etc/yum.repos.d/*
+cp CentOS-Base.repo /etc/yum.repos.d
+mv /etc/fstab /etc/fstab-orig
+cp fstab /etc
+yum -y -q clean all
+rm -rf /var/cache/yum
+#yum -y -q --releasever=7.5.1804 makecache
 cp -r $STARTDIR $CHROOTHOME/root
 chroot $CHROOTHOME /root/$WORKDIR/merge2.sh $WORKDIR
 wwvnfs --chroot=$CHROOTHOME
