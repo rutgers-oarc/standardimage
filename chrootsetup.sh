@@ -1,6 +1,6 @@
 # in chroot
 echo starting in chroot
-echo WORKDIR=/root/$1
+export WORKDIR=/root/$1
 echo WORKDIR is $WORKDIR
 rm -f /etc/yum.repos.d/*
 cp $WORKDIR/CentOS-Base.repo /etc/yum.repos.d
