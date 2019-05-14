@@ -8,8 +8,8 @@ echo WORKDIR is $WORKDIR
 echo CHROOTHOME is $CHROOTHOME
 echo CHROOTDIR is $CHROOTDIR
 echo starting on master
-#rm -rf $CHROOTHOME
-#rm -f /etc/warewulf/vnfs/centos-7.5-vault.conf
+rm -rf $CHROOTHOME
+rm -f /etc/warewulf/vnfs/"$CHROOTDIR".conf
 #wwmkchroot centos-7.5 $CHROOTHOME
 #wwvnfs --chroot=$CHROOTHOME
 #sed -i 's/^hybridpath.*/#\ &\nhybridize\ =\nhybrid\ =/' /etc/warewulf/vnfs/centos-7.5-vault.conf
