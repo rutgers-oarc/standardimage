@@ -1,20 +1,14 @@
 # in chroot
+echo starting in chroot
+echo WORKDIR=/root/$1
+echo WORKDIR is $WORKDIR
 rm -f /etc/yum.repos.d/*
-cp CentOS-Base.repo /etc/yum.repos.d
+cp $WORKDIR/CentOS-Base.repo /etc/yum.repos.d
 mv /etc/fstab /etc/fstab-orig
-cp fstab /etc
+cp $WORKDIR/fstab /etc
 yum -y -q clean all
 rm -rf /var/cache/yum
 #yum -y -q --releasever=7.5.1804 makecache
-cp -r $STARTDIR $CHROOTHOME/root
-chroot $CHROOTHOME /root/$WORKDIR/merge2.sh $WORKDIR
-wwvnfs --chroot=$CHROOTHOME
-echo done on master
-[root@munin ~]# cat /home/babbott/bill2/merge2.sh 
-echo running install in chroot
-export WORKDIR=/root/$1
-yum -y -q clean all
-rm -rf /var/cache/yum
 yum -y -q makecache
 yum -y -q update
 yum -y -q install kernel kernel-devel kernel-headers
@@ -56,22 +50,22 @@ yum -y -q install nhc-ohpc
 yum -y -q install mesa-private-llvm
 yum -y -q install sssd openldap-clients
 yum -y -q install ksh
-yum -y -q install /$WORKDIR/gpfs/gpfs*.rpm
+yum -y -q install $WORKDIR/gpfs/gpfs*.rpm
 sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 mkdir /etc/openldap/cacerts
-cp /$WORKDIR/ldap_hpc_rutgers_edu_interm.cer /etc/openldap/cacerts/
+cp $WORKDIR/ldap_hpc_rutgers_edu_interm.cer /etc/openldap/cacerts/
 authconfig --updateall --enableldap --enableldapauth --ldapserver=ldap://ldap.hpc.rutgers.edu:389 --ldapbasedn=dc=hpc,dc=rutgers,dc=edu --enableldaptls --enableldapstarttls
 cacertdir_rehash /etc/openldap/cacerts/
-cp -r /$WORKDIR/gpfs.service.d/ /etc/systemd/system/
-cp -r /$WORKDIR/sssd.service.d/ /etc/systemd/system/
-cp -r /$WORKDIR/slurmd.service.d /etc/systemd/system/
-cp -r /$WORKDIR/remote-fs.target.d/ /etc/systemd/system/
-cp -r /$WORKDIR/sysstat.service.d/ /etc/systemd/system/
+cp -r $WORKDIR/gpfs.service.d/ /etc/systemd/system/
+cp -r $WORKDIR/sssd.service.d/ /etc/systemd/system/
+cp -r $WORKDIR/slurmd.service.d /etc/systemd/system/
+cp -r $WORKDIR/remote-fs.target.d/ /etc/systemd/system/
+cp -r $WORKDIR/sysstat.service.d/ /etc/systemd/system/
 rmdir /home/
 ln -s /cache/home /home
 ln -s /cache/projects /projects
 ln -s /cache/sw /opt/sw
-cp /$WORKDIR/resolv.conf /etc/
+cp $WORKDIR/resolv.conf /etc/
 yum -y -q install pmix-ohpc ohpc-filesystem munge-ohpc
 yum -y -q install /root/bill/slurm/*.rpm
 chown -R 150:150 /etc/slurm/
@@ -88,12 +82,13 @@ chown -R 150:150 /var/lib/slurm
 ln -s /opt/sw/admin/lmod/lmod/init/cshrc /etc/profile.d/modules.csh
 ln -s /opt/sw/admin/lmod/lmod/init/profile /etc/profile.d/modules.sh
 rm -f /etc/profile.d/lmod*
-yum -y -q install /$WORKDIR/StarNetFastX2-2.4.16.rhel6.x86_64.rpm
+yum -y -q install $WORKDIR/StarNetFastX2-2.4.16.rhel6.x86_64.rpm
 /usr/lib/fastx2/install.sh --quiet
 mkdir /usr/lib/fastx2/var/tmp
 mkdir /usr/lib/fastx2/var/uploads
-cp /$WORKDIR/fastx/certs/* /usr/lib/fastx2/var/certs
-cp /$WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
+cp $WORKDIR/fastx/certs/* /usr/lib/fastx2/var/certs
+cp $WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
+cp $WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
 chown -R 983:982 /usr/lib/fastx2
 yum -y -q install https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
 yum -y -q install puppet-agent
