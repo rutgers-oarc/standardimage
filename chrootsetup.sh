@@ -70,6 +70,8 @@ ln -s /cache/sw /opt/sw
 cp $WORKDIR/resolv.conf /etc/
 yum -y -q install pmix-ohpc ohpc-filesystem munge-ohpc
 yum -y -q install $WORKDIR/slurm/*.rpm
+mv /etc/munge/munge.key /etc/munge/munge.key-orig
+cp $WORKDIR/munge.key /etc/munge
 chown -R 150:150 /etc/slurm/
 chown -R 150:150 /var/log/slurm_jobacct.log
 chown -R 150:150 /var/spool/slurm
