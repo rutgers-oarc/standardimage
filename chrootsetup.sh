@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # in chroot
 echo starting in chroot
 export WORKDIR=/root/$1
@@ -8,7 +10,6 @@ mv /etc/fstab /etc/fstab-orig
 cp $WORKDIR/fstab /etc
 yum -y -q clean all
 rm -rf /var/cache/yum
-#yum -y -q --releasever=7.5.1804 makecache
 yum -y -q makecache
 yum -y -q update
 yum -y -q install kernel kernel-devel kernel-headers
@@ -51,6 +52,7 @@ yum -y -q install mesa-private-llvm
 yum -y -q install sssd openldap-clients
 yum -y -q install ksh
 yum -y -q install $WORKDIR/gpfs/gpfs*.rpm
+cp $WORKDIR/firewalld/* /etc/firewalld/zones
 sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 mkdir /etc/openldap/cacerts
 cp $WORKDIR/ldap_hpc_rutgers_edu_interm.cer /etc/openldap/cacerts/
@@ -67,7 +69,7 @@ ln -s /cache/projects /projects
 ln -s /cache/sw /opt/sw
 cp $WORKDIR/resolv.conf /etc/
 yum -y -q install pmix-ohpc ohpc-filesystem munge-ohpc
-yum -y -q install /root/bill/slurm/*.rpm
+yum -y -q install $WORKDIR/slurm/*.rpm
 chown -R 150:150 /etc/slurm/
 chown -R 150:150 /var/log/slurm_jobacct.log
 chown -R 150:150 /var/spool/slurm

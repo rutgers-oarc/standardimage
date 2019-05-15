@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # master
 export CURRENT=$(pwd)
 export WORKDIR=$(basename -- $CURRENT)
@@ -16,7 +18,6 @@ sed -i 's/^hybridpath.*/#\ &\nhybridize\ =\nhybrid\ =/' /etc/warewulf/vnfs/"$CHR
 echo add protected files
 rsync -av ../priv/ ./
 rsync -av ./ $CHROOTHOME/root/$WORKDIR/
-cp -r $CURRENT $CHROOTHOME/root
 chroot $CHROOTHOME /root/$WORKDIR/chrootsetup.sh $WORKDIR
 wwvnfs --chroot=$CHROOTHOME
 echo done on master
