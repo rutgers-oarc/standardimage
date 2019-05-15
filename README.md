@@ -2,13 +2,11 @@
 
 This repo contains the procedure to automate the creation of a warewulf compute image.
 
-First, get a copy of restricted files:
+Copy restricted-access files from local
 
-rsync -av /home/babbott/image/priv/ priv/
+rsync -av /root/image/priv/ ./
 
-Then clone repo and run install script.  That script will prepare the chroot, copy files into it and complete the setup from within the chroot.
+Then run install.sh, which prepares the chroot, copies files into it and complete the setup from within the chroot.
 
-git clone https://github.com/rutgers-oarc/standardimage
-cd standardimage
 ./install.sh
 
