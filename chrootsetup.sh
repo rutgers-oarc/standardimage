@@ -90,6 +90,7 @@ yum -y -q install $WORKDIR/StarNetFastX2-2.4.16.rhel6.x86_64.rpm
 /usr/lib/fastx2/install.sh --quiet
 mkdir /usr/lib/fastx2/var/tmp
 mkdir /usr/lib/fastx2/var/uploads
+mkdir /usr/lib/fastx2/var/license
 cp $WORKDIR/fastx/certs/* /usr/lib/fastx2/var/certs
 cp $WORKDIR/fastx/config/* /usr/lib/fastx2/var/config
 cp $WORKDIR/fastx/license/* /usr/lib/fastx2/var/license
