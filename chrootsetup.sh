@@ -19,41 +19,51 @@ yum -y -q groups install infiniband
 yum -y -q groups install performance
 yum -y -q groups install hardware-monitoring
 yum -y -q groups install development
-yum -y -q groups install platform-devel
+#yum -y -q groups install platform-devel
 yum -y -q groups install debugging
-yum -y -q groups install perl-runtime
+#yum -y -q groups install perl-runtime
 yum -y -q groups install x11
 yum -y -q install epel-release
 yum -y -q install http://build.openhpc.community/OpenHPC:/1.3/CentOS_7/x86_64/ohpc-release-1.3-1.el7.x86_64.rpm
 yum -y -q clean all
 yum -y -q update
 yum -y -q groups install xfce
-yum -y -q install fio iperf3 telnet hwloc emacs php-cli net-snmp net-snmp-utils
-yum -y -q install fftw fftw-devel numpy netcdf gnuplot
-yum -y -q install agg autofs bonnie++ bzip2-devel cmake
+yum -y -q install fio iperf3 telnet hwloc emacs net-snmp net-snmp-utils
+#yum -y -q install php-cli
+#yum -y -q install numpy netcdf gnuplot agg
+yum -y -q install fftw fftw-devel
+#yum -y -q install cmake
+yum -y -q install autofs bonnie++ bzip2-devel
 yum -y -q install collectl dos2unix firefox glibc-static hddtemp hdparm
-yum -y -q install infiniband-diags-devel iptraf-ng zsh lldpd mutt msr-tools
-yum -y -q install scipy sqlite-devel sysfsutils
-yum -y -q install whois xorg-x11-apps xterm zlib-static
-yum -y -q install edac-utils eigen3-devel gdisk GraphicsMagick-perl gsl gsl-devel gvfs gvfs-client jasper-devel mozjs24 nodejs npm numactl-devel p7zip pigz poppler-cpp poppler-cpp-devel poppler-devel rdma-core-devel readline-devel samba-libs samba-common-tools samba-devel squashfs-tools tbb-devel tcl-devel tix tk-devel tkinter tmux valgrind-devel vte
+#yum -y -q install infiniband-diags-devel mutt
+yum -y -q install iptraf-ng zsh lldpd msr-tools
+#yum -y -q install scipy
+yum -y -q install sqlite-devel
+#yum -y -q install whois
+yum -y -q install xorg-x11-apps xterm zlib-static
+#yum -y -q install GraphicsMagick-perl
+#yum -y -q install gdisk rdma-core-devel samba-libs samba-common-tools samba-devel tix vte mozjs24 npm
+yum -y -q install edac-utils eigen3-devel gsl gsl-devel gvfs gvfs-client jasper-devel nodejs numactl-devel p7zip pigz poppler-cpp poppler-cpp-devel poppler-devel readline-devel squashfs-tools tbb-devel tcl-devel tk-devel tkinter tmux valgrind-devel
 yum -y -q install libarchive-devel libcurl-devel libssh2-devel libtiff-devel libusb libverto-tevent libXdmcp-devel libXevie
 yum -y -q install pcp-doc pcp-export-pcp2graphite pcp-pmda-activemq pcp-pmda-apache pcp-pmda-bash pcp-pmda-bonding pcp-pmda-cisco pcp-pmda-dbping pcp-pmda-dm pcp-pmda-ds389 pcp-pmda-ds389log pcp-pmda-elasticsearch pcp-pmda-gfs2 pcp-pmda-gluster pcp-pmda-gpfs pcp-pmda-gpsd pcp-pmda-json pcp-pmda-kvm pcp-pmda-lmsensors pcp-pmda-logger pcp-pmda-lustre pcp-pmda-lustrecomm pcp-pmda-mailq pcp-pmda-memcache pcp-pmda-mounts pcp-pmda-mysql pcp-pmda-named pcp-pmda-netfilter pcp-pmda-news pcp-pmda-nfsclient pcp-pmda-nginx pcp-pmda-nvidia-gpu pcp-pmda-pdns pcp-pmda-postfix pcp-pmda-postgresql pcp-pmda-roomtemp pcp-pmda-rpm pcp-pmda-sendmail pcp-pmda-shping pcp-pmda-summary pcp-pmda-trace pcp-pmda-unbound pcp-pmda-weblog pcp-pmda-zswap pcp-system-tools
-yum -y -q install perl-BSD-Resource perl-common-sense perl-GD perl-JSON-XS perl-Linux-Pid perl-Readonly perl-Readonly-XS perl-Regexp-Common perl-Term-ReadLine-Gnu perl-Text-CSV perl-Text-Format perl-Types-Serialiser
-yum -y -q install pygtk2 python-dateutil python-ldap python-matplotlib
-yum -y -q install trafshow iftop
+#yum -y -q install perl-BSD-Resource perl-common-sense perl-GD perl-JSON-XS perl-Linux-Pid perl-Readonly perl-Readonly-XS perl-Regexp-Common perl-Term-ReadLine-Gnu perl-Text-CSV perl-Text-Format perl-Types-Serialiser
+#yum -y -q install python-matplotlib
+yum -y -q install pygtk2 python-dateutil python-ldap
+yum -y -q install trafshow iftop nmap-ncat
 yum -y -q groups install "ohpc-base"
 yum -y -q groups install "ohpc-base-compute"
+yum -y -q groups install directory-client
+yum -y -q install openldap-clients
 yum -y -q install "ganglia-gmond-ohpc"
 yum -y -q install nrpe-ohpc
 yum -y -q install nagios-plugins-swap-ohpc nagios-plugins-disk-ohpc nagios-plugins-load-ohpc
 yum -y -q install warewulf-cluster-node-ohpc
 yum -y -q install nhc-ohpc
 yum -y -q install mesa-private-llvm
-yum -y -q install sssd openldap-clients
 yum -y -q install ksh
 yum -y -q install $WORKDIR/gpfs/gpfs*.rpm
 cp $WORKDIR/firewalld/* /etc/firewalld/zones
-sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
+#sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 mkdir /etc/openldap/cacerts
 cp $WORKDIR/ldap_hpc_rutgers_edu_interm.cer /etc/openldap/cacerts/
 authconfig --updateall --enableldap --enableldapauth --ldapserver=ldap://ldap.hpc.rutgers.edu:389 --ldapbasedn=dc=hpc,dc=rutgers,dc=edu --enableldaptls --enableldapstarttls
@@ -110,5 +120,8 @@ systemctl disable ipmievd
 systemctl disable rpcbind
 tuned-adm profile throughput-performance
 yum -y -q install https://downloads.rclone.org/v1.46/rclone-v1.46-linux-amd64.rpm
+yum -y -q install xorg-x11-server-Xorg yum-plugin-nvidia
+yum -y -q install kmod-nvidia-410.73-1.el7_5.elrepo.x86_64.rpm
+yum -y -q install nvidia-x11-drv-410.73-1.el7_5.elrepo.x86_64.rpm
 echo done in chroot
 
