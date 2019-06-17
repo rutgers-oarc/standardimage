@@ -121,6 +121,6 @@ systemctl disable rpcbind
 tuned-adm profile throughput-performance
 yum -y -q install https://downloads.rclone.org/v1.46/rclone-v1.46-linux-amd64.rpm
 yum -y -q install xorg-x11-server-Xorg
-yum -y -q install kmod-nvidia-410.73-1.el7_5.elrepo.x86_64.rpm nvidia-x11-drv-410.73-1.el7_5.elrepo.x86_64.rpm yum-plugin-nvidia-1.0.2-1.el7.elrepo.noarch.rpm
+yum -y -q install $WORKDIR/nvidia/*.rpm
 echo done in chroot
 
