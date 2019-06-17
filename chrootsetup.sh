@@ -63,7 +63,7 @@ yum -y -q install mesa-private-llvm
 yum -y -q install ksh
 yum -y -q install $WORKDIR/gpfs/gpfs*.rpm
 cp $WORKDIR/firewalld/* /etc/firewalld/zones
-#sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
+sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 mkdir /etc/openldap/cacerts
 cp $WORKDIR/ldap_hpc_rutgers_edu_interm.cer /etc/openldap/cacerts/
 authconfig --updateall --enableldap --enableldapauth --ldapserver=ldap://ldap.hpc.rutgers.edu:389 --ldapbasedn=dc=hpc,dc=rutgers,dc=edu --enableldaptls --enableldapstarttls
