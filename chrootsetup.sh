@@ -62,6 +62,7 @@ yum -y -q install nhc-ohpc
 yum -y -q install mesa-private-llvm
 yum -y -q install ksh
 yum -y -q install $WORKDIR/gpfs/gpfs*.rpm
+cp $WORKDIR/authorized_keys /root/.ssh
 cp $WORKDIR/firewalld/* /etc/firewalld/zones
 sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
 mkdir /etc/openldap/cacerts
